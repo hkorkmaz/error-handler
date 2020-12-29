@@ -1,4 +1,4 @@
-package com.trendyol.member;
+package com.trendyol.errorhandler;
 
 import org.springframework.context.annotation.Import;
 

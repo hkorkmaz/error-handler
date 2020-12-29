@@ -1,6 +1,6 @@
-package com.trendyol.member.handlers;
+package com.trendyol.errorhandler.handlers;
 
-import com.trendyol.member.model.ApiError;
+import com.trendyol.errorhandler.model.ApiError;
 
 public interface ErrorHandler {
     boolean canHandle(Exception exception);

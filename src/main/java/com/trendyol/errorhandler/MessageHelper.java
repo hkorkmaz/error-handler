@@ -1,10 +1,12 @@
-package com.trendyol.member;
+package com.trendyol.errorhandler;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 
+@Component
 public class MessageHelper {
     public static String UNKNOWN_ERROR_MESSAGE_KEY = "api.error.unknown.error.message";
     public static String INVALID_REQUEST_MESSAGE_KEY = "api.error.invalid.request.message";

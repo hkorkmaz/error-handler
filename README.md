@@ -2,12 +2,14 @@
 ### Usage
 
 - Add dependency
+
 ```xml
-    <dependency>
-        <groupId>com.trendyol.member</groupId>
-        <artifactId>error-handler</artifactId>
-        <version>0.1.0</version>
-    </dependency>
+
+<dependency>
+    <groupId>com.trendyol.errorhandler</groupId>
+    <artifactId>error-handler</artifactId>
+    <version>0.1.0</version>
+</dependency>
 ```
 - Enable it
 ```java

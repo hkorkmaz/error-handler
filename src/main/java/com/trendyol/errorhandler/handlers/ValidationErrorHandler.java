@@ -1,20 +1,18 @@
-package com.trendyol.member.handlers;
+package com.trendyol.errorhandler.handlers;
 
-import com.trendyol.member.MessageHelper;
-import com.trendyol.member.model.ApiError;
+import com.trendyol.errorhandler.MessageHelper;
+import com.trendyol.errorhandler.model.ApiError;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import static com.trendyol.member.MessageHelper.INVALID_REQUEST_MESSAGE_KEY;
+import static com.trendyol.errorhandler.MessageHelper.INVALID_REQUEST_MESSAGE_KEY;
 
 @Component
+@RequiredArgsConstructor
 public class ValidationErrorHandler implements ErrorHandler {
-    private MessageHelper messageHelper;
-
-    public ValidationErrorHandler(MessageHelper messageHelper) {
-        this.messageHelper = messageHelper;
-    }
+    private final MessageHelper messageHelper;
 
     @Override
     public boolean canHandle(Exception exception) {
@@ -24,9 +22,10 @@ public class ValidationErrorHandler implements ErrorHandler {
     @Override
     public ApiError handle(Exception exception) {
         var ex = (MethodArgumentNotValidException) exception;
-        var errorResponse = new ApiError();
-        errorResponse.setMessage(messageHelper.getMessage(INVALID_REQUEST_MESSAGE_KEY));
-        errorResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
+        var errorResponse = ApiError.builder()
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .message(messageHelper.getMessage(INVALID_REQUEST_MESSAGE_KEY))
+                .build();
 
         ex.getBindingResult().getFieldErrors()
                 .stream()

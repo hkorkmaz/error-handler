@@ -1,7 +1,8 @@
-package com.trendyol.member.handlers;
+package com.trendyol.errorhandler.handlers;
 
-import com.trendyol.member.ErrorResponse;
-import com.trendyol.member.MessageHelper;
+import com.trendyol.errorhandler.ErrorBody;
+import com.trendyol.errorhandler.ErrorResponse;
+import com.trendyol.errorhandler.MessageHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,9 +10,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
-import static com.trendyol.member.MessageHelper.UNKNOWN_ERROR_MESSAGE_KEY;
+import static com.trendyol.errorhandler.MessageHelper.UNKNOWN_ERROR_MESSAGE_KEY;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @ExtendWith(MockitoExtension.class)
 public class DefaultErrorHandlerTest {
@@ -46,7 +49,17 @@ public class DefaultErrorHandlerTest {
 
         assertNull(result.getCode());
         assertEquals("Default message", result.getMessage());
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, result.getHttpStatus());
+        assertEquals(INTERNAL_SERVER_ERROR, result.getHttpStatus());
+    }
+
+    @Test
+    void it_should_handle_and_set_custom_body(){
+        var result = defaultErrorHandler.handle(new TestExceptionWithCustomBody());
+
+        assertEquals("", result.getCode());
+        assertNull(result.getMessage());
+        assertEquals(FORBIDDEN, result.getHttpStatus());
+        assertEquals("Custom Body Test", result.getCustomBody());
     }
 }
 
@@ -54,3 +67,11 @@ public class DefaultErrorHandlerTest {
 class TestException extends RuntimeException {}
 
 class TestExceptionWithoutMetadata extends RuntimeException {}
+
+@ErrorResponse(httpStatus = 403)
+class TestExceptionWithCustomBody extends RuntimeException {
+    @ErrorBody
+    public String customBody(){
+        return "Custom Body Test";
+    }
+}

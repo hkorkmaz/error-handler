@@ -1,8 +1,8 @@
-package com.trendyol.member.handlers;
+package com.trendyol.errorhandler.handlers;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.trendyol.member.MessageHelper;
+import com.trendyol.errorhandler.MessageHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,8 +13,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 
 import java.util.List;
 
-import static com.trendyol.member.MessageHelper.INVALID_FIELD_MESSAGE_KEY;
-import static com.trendyol.member.MessageHelper.INVALID_REQUEST_MESSAGE_KEY;
+import static com.trendyol.errorhandler.MessageHelper.INVALID_FIELD_MESSAGE_KEY;
+import static com.trendyol.errorhandler.MessageHelper.INVALID_REQUEST_MESSAGE_KEY;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
