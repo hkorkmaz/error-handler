@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "error-handler")
 public class Config {
-    private Boolean logRequestHeaders;
+    private Boolean logRequestHeaders = true;
     private Boolean enabled;
 }
