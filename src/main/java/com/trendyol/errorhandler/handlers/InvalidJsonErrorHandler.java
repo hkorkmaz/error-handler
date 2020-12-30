@@ -1,17 +1,15 @@
 package com.trendyol.errorhandler.handlers;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.trendyol.errorhandler.model.ApiError;
 import com.trendyol.errorhandler.MessageHelper;
+import com.trendyol.errorhandler.model.ApiError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.stereotype.Component;
 
 import static com.trendyol.errorhandler.MessageHelper.INVALID_FIELD_MESSAGE_KEY;
 import static com.trendyol.errorhandler.MessageHelper.INVALID_REQUEST_MESSAGE_KEY;
 
-@Component
 @RequiredArgsConstructor
 public class InvalidJsonErrorHandler implements ErrorHandler {
     private final MessageHelper messageHelper;

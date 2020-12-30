@@ -4,12 +4,10 @@ import com.trendyol.errorhandler.MessageHelper;
 import com.trendyol.errorhandler.model.ApiError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static com.trendyol.errorhandler.MessageHelper.INVALID_REQUEST_MESSAGE_KEY;
 
-@Component
 @RequiredArgsConstructor
 public class ValidationErrorHandler implements ErrorHandler {
     private final MessageHelper messageHelper;

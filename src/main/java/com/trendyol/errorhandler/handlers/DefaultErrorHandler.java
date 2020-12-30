@@ -17,7 +17,6 @@ import static com.trendyol.errorhandler.MessageHelper.UNKNOWN_ERROR_MESSAGE_KEY;
 
 @Slf4j
 @RequiredArgsConstructor
-@Component
 public class DefaultErrorHandler implements ErrorHandler {
     private final MessageHelper messageHelper;
 
