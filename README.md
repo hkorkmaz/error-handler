@@ -11,7 +11,7 @@
     <version>0.1.0</version>
 </dependency>
 ```
-- Enable it
+- Enable it (Optional)
 ```java
 @SpringBootApplication
 -> @EnableErrorHandling
@@ -35,6 +35,28 @@ HTTP 404
 }
 ```
 
+- Override your error response by marking any method with _*@ErrorBody*_ in your exception class.
+``` 
+@ErrorResponse(httpStatus = 404)
+public class UserNotFoundException extends RuntimeException {
+  
+  @ErrorBody
+  public Object errorBody(){  // should have zero input params 
+     return Map.of(
+         "field1",  "message",
+         "field2", 123 
+     );
+  }
+}
+```
+will output
+```
+HTTP 404
+{
+  "field1": "message",
+  "field2": 123
+}
+```
 - Validation errors are handled automatically, example validation response:
 ``` 
 {
@@ -80,4 +102,9 @@ HTTP 404
 ``` 
 api.error.unknown.error.message = Something went wrong. Please try again.
 api.error.invalid.request.message = Bad request, please check your input.
+```
+
+- By default, HTTP headers are logged in case of an exception. You can disable it by setting 
+``` 
+error-handler.log-request-headers = false
 ```
