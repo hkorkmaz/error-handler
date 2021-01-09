@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -43,6 +42,7 @@ public class DefaultErrorHandler implements ErrorHandler {
         } else {
             errorBuilder
                     .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .customBody(getCustomBody(exception))
                     .message(messageHelper.getMessage(UNKNOWN_ERROR_MESSAGE_KEY));
         }
         return errorBuilder.build();
