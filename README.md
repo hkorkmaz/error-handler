@@ -6,8 +6,8 @@
 ```xml
 
 <dependency>
-    <groupId>com.trendyol.errorhandler</groupId>
-    <artifactId>error-handler</artifactId>
+    <groupId>spring.error-handler</groupId>
+    <artifactId>handler</artifactId>
     <version>0.1.0</version>
 </dependency>
 ```
